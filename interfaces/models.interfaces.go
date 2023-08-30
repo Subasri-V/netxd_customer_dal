@@ -6,5 +6,5 @@ import(
 //import "Application-New/netxd_customer_dal/models"
 
 type ICustomer interface {
-	CreateCustomer(*models.CustomerDetails) string
+	CreateCustomer(*models.CustomerDetails) (*models.DBResponse,error)
 }
