@@ -1,10 +1,10 @@
 package services
 
 import (
-	"Application-New/netxd_customer_dal/interfaces"
-	"Application-New/netxd_customer_dal/models"
 	"context"
 
+	"github.com/Subasri-V/application-new/netxd_customer_dal/interfaces"
+	models "github.com/Subasri-V/application-new/netxd_customer_dal/models"
 	"go.mongodb.org/mongo-driver/mongo"
 )
 

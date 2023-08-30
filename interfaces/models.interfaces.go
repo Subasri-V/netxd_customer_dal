@@ -1,7 +1,10 @@
 package interfaces
 
-import "Application-New/netxd_customer_dal/models"
+import(
+	models "github.com/Subasri-V/application-new/netxd_customer_dal/models"
+)
+//import "Application-New/netxd_customer_dal/models"
 
-type ICustomer interface{
-	CreateCustomer(*models.CustomerDetails)(string)
+type ICustomer interface {
+	CreateCustomer(*models.CustomerDetails) string
 }
