@@ -19,7 +19,7 @@ func InitializeCustomerService(ctx context.Context, collection *mongo.Collection
 	return &CustomerService{ctx, collection}
 }
 
-func (c *CustomerService) CreateCustomer( customer *models.CustomerDetails) (*models.DBResponse, error) {
+func (c *CustomerService) CreateCustomer(customer *models.CustomerDetails) (*models.DBResponse, error) {
 	res, err := c.mongoCollection.InsertOne(c.ctx, &customer)
 
 	if err != nil {
@@ -34,4 +34,25 @@ func (c *CustomerService) CreateCustomer( customer *models.CustomerDetails) (*mo
 		return nil, err
 	}
 	return newUser, nil
+}
+
+func (c *CustomerService) GetCustomerById(id int32) (*models.CustomerDetails, error) {
+	filter := bson.M{"customerid": id}
+	var customer *models.CustomerDetails
+	err := c.mongoCollection.FindOne(c.ctx, filter).Decode(&customer)
+	if err != nil {
+		return nil, err
+	}
+	return customer, nil
+}
+
+func (c*CustomerService) DeleteCustomerById(id int32) (*mongo.DeleteResult,error){
+	filter := bson.D{{Key: "customerid", Value: id}}
+	//var customer *models.Customer
+	res, err := c.mongoCollection.DeleteOne(c.ctx, filter)
+	
+	if err != nil {
+		return nil, err
+	}
+	return res, nil
 }
